@@ -184,6 +184,8 @@ class _M2CryptoBuildExt(build_ext.build_ext):
             if mach in ('ppc64le', 'ppc64el'):
                 self.swig_opts.append('-D_CALL_ELF=2')
 
+            self.swig_opts.append('-D__linux__')
+
         self.swig_opts.extend(['-I%s' % i for i in self.include_dirs])
 
         # Some Linux distributor has added the following line in
@@ -205,7 +207,7 @@ class _M2CryptoBuildExt(build_ext.build_ext):
                 '-I' + os.path.join(openssl_include_dir, 'openssl'))
 
         self.swig_opts.append('-includeall')
-        self.swig_opts.append('-modern')
+        #self.swig_opts.append('-modern')
         self.swig_opts.append('-builtin')
 
         # These two lines are a workaround for
